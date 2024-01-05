@@ -70,9 +70,9 @@ sampling = {
         'gyr_x': "mean", 
         'gyr_y': "mean", 
         'gyr_z': "mean", 
+        'participant': "last", 
         'label' : "last",
         'category': "last", 
-        'participant': "last", 
         'set': "last"
 }
 
@@ -81,10 +81,6 @@ data_resampled = pd.concat([df.resample(rule="200ms").apply(sampling).dropna() f
 
 data_resampled["set"] = data_resampled["set"].astype("int")
 data_resampled.info()
-
-# --------------------------------------------------------------
-# Export dataset
-# --------------------------------------------------------------
 
 data_resampled.to_pickle("../../data/interim/01_data_processed.pkl")
 
